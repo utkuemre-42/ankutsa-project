@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ankutsa - Gerçek mi, Hayal mi?</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: #667eea;
+        }
+        
+        .hero {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            text-align: center;
+            padding: 4rem 0;
+            margin: 2rem 0;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #333;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .warning-box {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(238, 90, 36, 0.3);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+        
+        .warning-box h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .warning-box p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .content-section {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 3rem;
+            margin: 2rem 0;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .content-section h2 {
+            color: #333;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 0.5rem;
+        }
+        
+        .content-section h3 {
+            color: #667eea;
+            margin: 1.5rem 0 1rem 0;
+            font-size: 1.3rem;
+        }
+        
+        .content-section p {
+            margin-bottom: 1rem;
+            color: #555;
+            font-size: 1.1rem;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            transition: transform 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-card .number {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .faq-item {
+            background: rgba(102, 126, 234, 0.1);
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .faq-item h4 {
+            color: #333;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .faq-item p {
+            color: #666;
+            margin: 0;
+        }
+        
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-quote {
+            font-style: italic;
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+        
+        .emoji {
+            font-size: 1.5rem;
+            margin: 0 0.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .content-section {
+                padding: 2rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">🌍 Ankutsa.com</a>
+            <ul class="nav-links">
+                <li><a href="#ana-sayfa">Ana Sayfa</a></li>
+                <li><a href="#hakkinda">Hakkında</a></li>
+                <li><a href="#sss">SSS</a></li>
+                <li><a href="#iletisim">İletişim</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section id="ana-sayfa" class="hero">
+            <h1>🏝️ Ankutsa Ülkesi</h1>
+            <p>Gerçek mi, Hayal mi? Bu sorunun cevabını öğrenmek için aşağıya kaydırın...</p>
+        </section>
+
+        <div class="warning-box">
+            <h2>⚠️ ÖNEMLİ DUYURU</h2>
+            <p>Sevgili ziyaretçiler, bu siteye geldiğinize göre muhtemelen internette "Ankutsa" adında bir ülke hakkında bilgiler gördünüz. Maalesef size kötü bir haberimiz var: <strong>Ankutsa diye bir ülke hiçbir zaman var olmadı ve şu anda da yok.</strong></p>
+            <p>Atlantik Okyanusunda İspanya ve Portekiz arasında 92 milyonluk nüfusu olan büyük bir ülke olsaydı, sanırım birilerinin fark etmesi gerekirdi, değil mi? 🤔</p>
+        </div>
+
+        <section id="hakkinda" class="content-section">
+            <h2>📊 "Ankutsa" Hakkında Gerçek Veriler</h2>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>🗺️ Konum</h3>
+                    <div class="number">❌</div>
+                    <p>Hiçbir yerde (çünkü mevcut değil)</p>
+                </div>
+                
+                <div class="stat-card">
+                    <h3>📏 Yüzölçümü</h3>
+                    <div class="number">0</div>
+                    <p>km² (var olmadığı için)</p>
+                </div>
+                
+                <div class="stat-card">
+                    <h3>👥 Nüfus</h3>
+                    <div class="number">0</div>
+                    <p>kişi</p>
+                </div>
+                
+                <div class="stat-card">
+                    <h3>💰 GSYİH</h3>
+                    <div class="number">∞</div>
+                    <p>Hesaplanamaz</p>
+                </div>
+            </div>
+
+            <h3>🏛️ Hükümet Yapısı</h3>
+            <p><strong>Cumhurbaşkanı:</strong> Bilinmiyor</p>
+            <p><strong>Başbakan:</strong> Mevcut değil</p>
+            <p><strong>Bakanlık sayısı:</strong> Çok fazla (hayal gücü sınırsız)</p>
+
+            <h3>🌍 Coğrafya</h3>
+            <p><strong>Komşuları:</strong> İspanya ve Portekiz (bu konudan habersiz)</p>
+            <p><strong>Doğal Kaynaklar:</strong> Yok (çünkü ülke yok)</p>
+            <p><strong>İklim:</strong> Belirsiz (hava durumu tahmin edilemiyor)</p>
+
+            <h3>🗣️ Dil</h3>
+            <p><strong>Resmi dil:</strong> Ankutca (118 milyon kişi konuşuyor olsaydı, Google Translate'e eklenmesi gerekirdi)</p>
+
+            <h3>⚽ Spor</h3>
+            <p><strong>Milli futbol takımı:</strong> FIFA dünya sıralamasında hiçbir yerde</p>
+            <p><strong>Başarılar:</strong> Hayal dünyasında şampiyon</p>
+        </section>
+
+        <section id="sss" class="content-section">
+            <h2>❓ Sıkça Sorulan Sorular</h2>
+            
+            <div class="faq-item">
+                <h4>🤔 Ankutsa gerçek bir ülke mi?</h4>
+                <p>Hayır, tamamen kurgusal. Gerçek dünyada böyle bir ülke bulunmamaktadır.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h4>🎭 Neden böyle bir ülke icat edildi?</h4>
+                <p>Sadece hayal gücü ürünü, belki de Wikipedia deneyimi olabilir. Gerçek nedeni bilinmiyor.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h4>📚 Ankutca öğrenebilir miyim?</h4>
+                <p>Olmayan bir dili öğrenmek oldukça zor olabilir. Önce dilin var olması gerekir.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h4>🛂 Ankutsa pasaportu alabilir miyim?</h4>
+                <p>Hayır, çünkü böyle bir ülke yok. Gerçek bir pasaport için gerçek bir ülke vatandaşı olmanız gerekir.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h4>✈️ Ankutsa'ya nasıl gidebilirim?</h4>
+                <p>Maalesef oraya gidecek uçak yok. Hayal gücünüzle seyahat edebilirsiniz.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h4>🏦 Ankutsa para birimi nedir?</h4>
+                <p>Ankutsa Lirası (piyasa değeri: sıfır). Kripto para borsalarında da bulunmuyor.</p>
+            </div>
+        </section>
+
+        <section id="iletisim" class="content-section">
+            <h2>📞 İletişim</h2>
+            <p>Bu site hakkında sorularınız varsa, gerçek dünyada gerçek insanlarla iletişim kurmanızı öneririz.</p>
+            <p><strong>Not:</strong> Bu site tamamen bilgilendirme amaçlıdır ve yanlış bilgilerin düzeltilmesi için oluşturulmuştur.</p>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 Ankutsa.com - Gerçek olmayan ülkeler hakkında gerçek bilgiler</p>
+            <p class="footer-quote">"Hayal kurmak güzel, ama gerçeklikten kopmayalım." 🌟</p>
+        </div>
+    </footer>
+</body>
+</html>
